@@ -40,6 +40,12 @@ Later I added two of mine problems: bubblesort (highly iterative) and non optimi
 ![Spectralnorm](https://rawgit.com/gareins/dynamic_benchmarks/master/.imgs_readme/spectralnorm.svg)
 ![Spectralnorm log](https://rawgit.com/gareins/dynamic_benchmarks/master/.imgs_readme/spectralnorm_log.svg)
 
+## Do it yourself
+
+Clone and run init.py. This will download benchmark script from [The Computer Language
+Benchmarks Game](http://benchmarksgame.alioth.debian.org/), change ini file and copy over programs. 
+Further instructions for actually running the benchmars and generating images are given when init.py finishes.
+
 ## Conclusion
 
 Here are my thoughts on these results:
