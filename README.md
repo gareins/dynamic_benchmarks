@@ -1,4 +1,4 @@
-# Collection of dynamic benchmarks
+# Benchmarks for dynamic languages
 
 A comparison between a couple of dynamic procedural languages and their different implementations. Here is what is measured:
 * Lua 5.3.3
@@ -43,10 +43,10 @@ Later I added two of mine problems: bubblesort (highly iterative) and non optimi
 ## Conclusion
 
 Here are my thoughts on these results:
-* Lua - a very fast interpreter, faster than some JITs here. Biggest drawback is when (re)alocating heavily - see Binary trees.
-* Luajit - crazy fast, fastest dynamic jit, fastest at quick programs, when running more time, it get surpassed by Java. Problem again are binary trees.
-* Python - slowest interpreter here, even though I did not test PHP5 interpreter, which would probably be even slower. Worst case scenario is recursive heavy Fibonacci program.
+* Lua - a very fast interpreter, even faster than some JITs on this list. Its biggest drawback is when (re)alocating heavily - see Binary trees.
+* Luajit - crazy fast, fastest dynamic jit. It really shines at quick programs. But when running more time, it gets surpassed by Java. Only problem, that can be said about luajit is its performance when allocating a lot of space.
+* Python - slowest interpreter on the list. In the future, PHP5 interpreter will be added to compare this against. Worst case scenario fo plain python is recursive heavy Fibonacci program.
 * Pypy - ususally scores inbetween slower (HHVM, Lua and Python) and faster (Node, Luajit, Java) programs. It still has a lot of problems when a lot of allocating is taking place.
-* HHVM - tries to beat Pypys performance and sometimes it actually does, but still not quite there.
-* Node - a very fast JIT, beaten only by Luajit and Java, though usually a couple times faster than Pypy.
+* HHVM - tries to beat Pypy-s performance and sometimes it actually does, but still not quite there. Just like native Python implementation, this also soffers at recursive heavy problems.
+* Node - a very fast JIT, beaten only by Luajit and Java. Is is a couple of times faster than Pypy. For some reason it shines most when doing bubble sort.
 * Java - when shorter programs are executed it is still beaten by Luajit but when execution is longer than a couple of seconds it overtakes Luajit and is fastest.
