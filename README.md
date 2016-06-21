@@ -19,4 +19,5 @@ Benchmarks Game](http://benchmarksgame.alioth.debian.org/) and added another. I 
 
 Later I added two of mine problems: bubblesort (highly iterative) and non optimized fibonacci (highly recursive). And here are the results:
 
-![Test img](.imgs_readme/binarytrees.svg?raw=true "Tst")
+![Test img](https://rawgit.com/gareins/dynamic_benchmarks/master/.imgs_readme/binarytrees.svg)
+![Test img2](https://rawgit.com/gareins/dynamic_benchmarks/master/.imgs_readme/binarytrees_log.svg)
