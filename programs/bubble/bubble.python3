@@ -19,4 +19,6 @@ def bubble(n):
     return lst
 
 from sys import argv
-print(" ".join([str(i) for i in bubble(int(argv[1]))]) + " ")
+for i in bubble(int(argv[1])):
+    print(str(i), end=" ")
+print("")

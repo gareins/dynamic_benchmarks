@@ -36,10 +36,8 @@ function bubble($n)
 $n = $_SERVER['argv'][1];
 $lst = bubble($n);
 
-$str = "";
 for($i = 0; $i < $n; ++$i)
-    $str = $str . $lst[$i] . " ";
-print($str);
+    echo $lst[$i] . " ";
 
 ?>
 

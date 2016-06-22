@@ -33,13 +33,11 @@ public class bubble
     }
     
     public static void main(String[] args)
-    {
+    {        
         int[] lst = random(Integer.parseInt(args[0]));
         lst = bubble_fun(lst);
-        
-        String s = "";
         for(int i: lst)
-            s += i + " ";
-        System.out.println(s);
+            System.out.print(i + " ");
+        System.out.println("");
     }
 }

@@ -35,10 +35,9 @@ function bubble(n)
 
 var n = +process.argv[2];
 var lst = bubble(n);
-var s = "";
 for(var i = 0; i < n; i++)
-    s = s + lst[i] + " ";
-console.log(s);
+    process.stdout.write(lst[i] + " ");
+process.stdout.write("\n");
 
 
 

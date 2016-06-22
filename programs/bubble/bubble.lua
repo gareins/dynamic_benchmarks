@@ -32,9 +32,7 @@ end
 local n = tonumber(arg and arg[1]);
 local lst = bubble(n);
 
-local str = "";
 for i=0, n - 1, 1 do
-    str = str .. lst[i] .. " ";
+    io.write(lst[i] .. " ");
 end
-
-print(str);
+io.write("\n");
