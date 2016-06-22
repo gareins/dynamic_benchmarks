@@ -27,7 +27,7 @@ benchmarks = {"binarytrees": "Binary tree",
               "bubble": "Bubble sort",
               "fib": "Fibonacci"}
 
-def decorate_plot(axis, ylabel, xlabel, title, xticks):
+def decorate_plot(axis, xlabel, ylabel, title, xticks):
     plt.title(benchmarks[title])
     
     # set legend position outside to right
