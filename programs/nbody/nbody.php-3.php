@@ -1,4 +1,4 @@
-<?
+<?php
 /* The Computer Language Benchmarks Game
 http://benchmarksgame.alioth.debian.org/
 
