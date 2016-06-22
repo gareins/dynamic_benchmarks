@@ -48,7 +48,9 @@ try:
                 XY.append((x, y, lang))
                 plt.errorbar(x, y, yerr=y_err, fmt='-', label=lang)
 
-            legend = plt.legend(loc='upper left', shadow=True, fontsize='medium')
+            plt.legend(loc='upper left', shadow=True, fontsize='medium')
+            plt.ylabel("Execution time in seconds")
+            plt.xlabel("Problem size")
             x_min, x_max = x_min - (x_max - x_min) / 20, x_max + (x_max - x_min) / 20
             y_min, y_max = y_min - (y_max - y_min) / 20, y_max + (y_max - y_min) / 20
 
@@ -61,7 +63,10 @@ try:
                 plt.semilogy(x, y, label = lang)
                 
             plt.grid(True)
-            legend = plt.legend(loc='upper left', shadow=True, fontsize='medium')
+            plt.title(meas)
+            plt.ylabel("Execution time in seconds")
+            plt.xlabel("Problem size")
+            plt.legend(loc='upper left', shadow=True, fontsize='medium')
             plt.savefig(imgs_folder + meas + "_log.svg")
                 
 
