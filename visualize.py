@@ -1,13 +1,23 @@
 from collections import defaultdict
 from matplotlib import pyplot as plt
+from matplotlib.ticker import FixedLocator
 from numpy import std
 import os
+
+def decorate_plot(axis, ylabel, xlabel, title, xticks):
+    plt.title(title)
+    axis.legend(loc='upper left', shadow=True, fontsize='medium')
+    plt.ylabel(ylabel)
+    plt.xlabel(xlabel)
+    axis.xaxis.set_major_locator(FixedLocator(xticks))
+    axis.grid(True)
+
 
 data_file = "script/summary/all_measurements.csv"
 imgs_folder = "imgs/"
 if not os.path.isdir(imgs_folder):
     os.mkdir(imgs_folder)
-
+    
 try:
     with open(data_file, "r") as fp:
         dat = defaultdict(lambda: defaultdict(list))
@@ -21,8 +31,8 @@ try:
             dat[bench][lang].append((int(n), float(cpu), float(mem), float(elapsed)))
 
         for meas, mdata in dat.items():
-            plt.clf()
-            plt.title(meas)
+            fig = plt.figure()
+            ax = fig.add_subplot(111)   
 
             y_min = 1e10
             y_max = 0
@@ -46,27 +56,21 @@ try:
                 y_max = max(y) if max(y) > y_max else y_max
 
                 XY.append((x, y, lang))
-                plt.errorbar(x, y, yerr=y_err, fmt='-', label=lang)
+                ax.errorbar(x, y, yerr=y_err, fmt='-', label=lang)
 
-            plt.legend(loc='upper left', shadow=True, fontsize='medium')
-            plt.ylabel("Execution time in seconds")
-            plt.xlabel("Problem size")
             x_min, x_max = x_min - (x_max - x_min) / 20, x_max + (x_max - x_min) / 20
             y_min, y_max = y_min - (y_max - y_min) / 20, y_max + (y_max - y_min) / 20
-
-            plt.grid(True)
-            plt.axis((x_min, x_max, y_min, y_max))
+            
+            ax.axis((x_min, x_max, y_min, y_max))
+            decorate_plot(ax, "Problem size", "Execution time in seconds", meas, XY[0][0])
             plt.savefig(imgs_folder + meas + ".svg")
             
             plt.clf()
+            ax = fig.add_subplot(111) 
             for x, y, lang in XY:
-                plt.semilogy(x, y, label = lang)
-                
-            plt.grid(True)
-            plt.title(meas)
-            plt.ylabel("Execution time in seconds")
-            plt.xlabel("Problem size")
-            plt.legend(loc='upper left', shadow=True, fontsize='medium')
+                ax.semilogy(x, y, label = lang)
+            
+            decorate_plot(ax, "Problem size", "Execution time in seconds", meas, XY[0][0])
             plt.savefig(imgs_folder + meas + "_log.svg")
                 
 
