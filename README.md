@@ -7,7 +7,10 @@ A comparison between a couple of dynamic procedural languages and their differen
 * Pypy 2.4.0
 * HipHop VM 3.13.2
 * NodeJS v6.2.1
-* OpenJDK 1.8.0_92 (reference)
+* OpenJDK 1.8.0_92 (not dynamic, but here as a reference)
+* PHP 7.0.7
+* Ruby 2.3.1
+
 
 Goal here was to compare languages and how their interpreters or JIT compilers perform at simple programs. I took five benchmarks from [The Computer Language
 Benchmarks Game](http://benchmarksgame.alioth.debian.org/) and added another. I took these ones, because not all work with Pypy or Luajit implementations of their respective languages. Problems:

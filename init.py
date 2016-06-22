@@ -11,7 +11,8 @@ def copy_programs():
     add_implementation = {
         "python3": "pypy3",
         "lua": "luajit",
-        "node": "js"
+        "node": "js",
+        "php": "hhvm"
     }
 
     dir_out = script_dir + "programs/"
