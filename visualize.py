@@ -1,12 +1,40 @@
 from collections import defaultdict
 from matplotlib import pyplot as plt
 from matplotlib.ticker import FixedLocator
+import matplotlib.cm as cm
 from numpy import std
 import os
 
+colors = ["#e41a1c", "#377eb8", "#4daf4a", "#984ea3", 
+          "#ff7f00", "#ffff33", "#a65628", "#f781bf", 
+          "#999999", "#FFFFFF"]
+ 
+languages = {"pypy3":   "Pypy 2.4",
+             "hhvm":    "HipHop VM 3.13",
+             "java":    "Java OpenJDK 1.8",
+             "lua":     "Lua 5.3",
+             "luajit":  "Luajit 2.0",
+             "php":     "Php 7.0",
+             "python3": "Python 3.5",
+             "ruby":    "Ruby 2.3",
+             "js":      "NodeJS 6.2"}
+
+benchmarks = {"binarytrees": "Binary tree",
+              "fannkuchredux": "Fannkuchredux",
+              "fasta": "Fasta",
+              "nbody": "N-body",
+              "spectralnorm": "Spectralnorm",
+              "bubble": "Bubble sort",
+              "fib": "Fibonacci"}
+
 def decorate_plot(axis, ylabel, xlabel, title, xticks):
-    plt.title(title)
-    axis.legend(loc='upper left', shadow=True, fontsize='medium')
+    plt.title(benchmarks[title])
+    
+    # set legend position outside to right
+    box = ax.get_position()
+    ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
+    ax.legend(loc='center left', bbox_to_anchor=(1, 0.5), fontsize='small')
+
     plt.ylabel(ylabel)
     plt.xlabel(xlabel)
     axis.xaxis.set_major_locator(FixedLocator(xticks))
@@ -40,7 +68,7 @@ try:
             x_max = 0
             
             XY = []
-            for lang in sorted(mdata.keys()):
+            for idx, lang in enumerate(sorted(mdata.keys())):
                 lst = mdata[lang]
                 D = defaultdict(list)
                 for tpl in lst:
@@ -56,7 +84,7 @@ try:
                 y_max = max(y) if max(y) > y_max else y_max
 
                 XY.append((x, y, lang))
-                ax.errorbar(x, y, yerr=y_err, fmt='-', label=lang)
+                ax.errorbar(x, y, yerr=y_err, color=colors[idx], label=languages[lang])
 
             x_min, x_max = x_min - (x_max - x_min) / 20, x_max + (x_max - x_min) / 20
             y_min, y_max = y_min - (y_max - y_min) / 20, y_max + (y_max - y_min) / 20
@@ -67,8 +95,8 @@ try:
             
             plt.clf()
             ax = fig.add_subplot(111) 
-            for x, y, lang in XY:
-                ax.semilogy(x, y, label = lang)
+            for i, (x, y, lang) in enumerate(XY):
+                ax.semilogy(x, y, color=colors[i], label=languages[lang])
             
             decorate_plot(ax, "Problem size", "Execution time in seconds", meas, XY[0][0])
             plt.savefig(imgs_folder + meas + "_log.svg")
